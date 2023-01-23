@@ -8,13 +8,14 @@ const BreadCrumbs = () => {
   const isLastBreadcrumb = (index, array) => array.length - 1 === index
   const isFirstItem = (index) => index === 0
 
-  const calculateUrl = (index, array)=>{
-    return array.slice(0, index+1).join("/")
+  const calculateUrl = (index, array) => {
+    return array.slice(0, index + 1).join("/")
   }
+  
   return (
     <div className={styles.breadcrumbs}>
 
-        {location.pathname.split('/').map((item, index, array) => {
+      {location.pathname.split('/').map((item, index, array) => {
         if (location.pathname === '/') {
           return <p className={styles.breadcrumbs__active}>{isFirstItem(index) ? 'All products' : item}</p>
         }

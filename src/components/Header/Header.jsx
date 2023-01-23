@@ -6,7 +6,7 @@ import {PublicRoutes} from '../../routes/routes'
 const Header = () => {
   return (
     <header className={styles.header}>
-      <div className={styles.header__container}>
+      <div className={`${styles.header__container} container`}>
         <div className={styles.header__main}>
           <Link to={PublicRoutes.PRODUCT_LIST} className={styles.header__title}><img src="./imgs/logo.png"/></Link>
           <BreadCrumbs />
