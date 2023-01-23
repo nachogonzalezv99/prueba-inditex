@@ -15,6 +15,9 @@
 
   --clr-bg-light: var(--gray-100);
   --clr-bg: var(--gray-200);
+
+  --clr-text-light: var(--gray-500);
+  --clr-text-dark: var(--black);
 }
 
 body {
@@ -27,6 +30,10 @@ h4,
 h5,
 h6 {
   margin: 0;
+}
+a{
+  text-decoration: none;
+  color: inherit;
 }
 img {
   max-width: 100%;
