@@ -1,0 +1,24 @@
+.header {
+	background-color: var(--clr-bg-light);
+
+	&__container {
+		display: flex;
+        justify-content: space-between;
+		align-items: center;
+		max-width: 1200px;
+        margin: 0 auto;
+        height: 60px;
+        padding: 20px;
+	}
+
+    &__main{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 50px;
+    }
+
+    &__title{
+        width: 80px;
+    }
+}
