@@ -1,0 +1,8 @@
+import styles from "./ProductCard.module.scss";
+
+const ProductCard = () => {
+  return (
+    <div>ProductCard</div>
+  )
+}
+export { ProductCard }
