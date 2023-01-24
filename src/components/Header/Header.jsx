@@ -2,6 +2,7 @@ import styles from "./Header.module.scss";
 import { Link } from 'react-router-dom'
 import BreadCrumbs from "../BreadCrumbs/BreadCrumbs";
 import {PublicRoutes} from '../../routes/routes'
+import ShoppingCart from "../ShoppingCart/ShoppingCart";
 
 const Header = () => {
   return (
@@ -12,7 +13,7 @@ const Header = () => {
           <BreadCrumbs />
         </div>
 
-        <div className={styles.header__shoppingCart}>3</div>
+        <ShoppingCart />
       </div>
 
     </header>

@@ -1,27 +1,38 @@
-import styles from './ProductDetail.module.scss'
-import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { getSingleProduct } from '../../services/products.services'
+import { useParams } from 'react-router-dom'
 import Accordion from '../../components/Accordion/Accordion'
+import { getSingleProduct, postProduct } from '../../services/products.services'
+import styles from './ProductDetail.module.scss'
+import { useDispatch } from 'react-redux/es/hooks/useDispatch'
+import { postProductRedux } from '../../app/features/shoppingCartSlice'
 
 const ProductDetails = () => {
   const { id: productId } = useParams()
   const [product, setProduct] = useState({})
-
-  const [selectedColor, setSelectedColor] = useState('D9D9D9')
-  const colors = ['D9D9D9', '5A5B7D', '81D6CB', 'FFFFFF', '000000']
-  const isColorSelected = (color) => color === selectedColor
-  const handleColorClick = (color) => setSelectedColor(color)
-
-  const [selectedStorage, setSelectedStorage] = useState('64')
-  const storages = ['64', '125', '256']
-  const isStorageSelected = (storage) => storage === selectedStorage
-  const handleStorageClick = (storage) => setSelectedStorage(storage)
-
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setProduct(getSingleProduct(productId))
   })
+
+  //Colors
+  const colors = ['D9D9D9', '5A5B7D', '81D6CB', 'FFFFFF', '000000']
+  const [selectedColor, setSelectedColor] = useState(colors.length === 1 ? colors[0] : '')
+  const isColorSelected = (color) => color === selectedColor
+  const handleColorClick = (color) => setSelectedColor(color)
+
+  //Storages
+  const storages = ['64', '125', '256']
+  const [selectedStorage, setSelectedStorage] = useState(storages.length === 1 ? storages[0] : '')
+  const isStorageSelected = (storage) => storage === selectedStorage
+  const handleStorageClick = (storage) => setSelectedStorage(storage)
+
+
+  //Add
+  const isButtonDisabled = () => !selectedColor || !selectedStorage
+  const handleClick = () => {
+    dispatch(postProductRedux(productId, selectedColor, selectedStorage))
+  }
 
 
   return (
@@ -68,9 +79,14 @@ const ProductDetails = () => {
           </div>
         </div>
         <div className={styles.productDetail__section}>
-          <button className='btn btn--primary'>Añadir</button>
+          <button
+            className='btn btn--primary'
+            disabled={isButtonDisabled()}
+            onClick={handleClick}
+          >Añadir
+          </button>
         </div>
-        
+
         <Accordion title="Technical information" />
 
       </div>
@@ -78,3 +94,4 @@ const ProductDetails = () => {
   )
 }
 export { ProductDetails }
+

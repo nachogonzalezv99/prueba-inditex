@@ -20,9 +20,9 @@ const Accordion = ({ title, children }) => {
             </button>
             {isOpen && (
                 <div className={styles.accordion__body}>
-                    {Array(5).fill().map(item => (
-                        <div className={styles.accordion__description}>
-                            <BsCpuFill className={styles.accordion__icon}/>
+                    {Array(5).fill().map((item, index) => (
+                        <div key={index} className={styles.accordion__description}>
+                            <BsCpuFill className={styles.accordion__icon} />
                             <p className={styles.accordion__key}>CPU</p>
                             <p className={styles.accordion__value}>1000 Ghz</p>
                         </div>
