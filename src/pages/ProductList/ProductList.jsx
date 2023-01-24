@@ -30,7 +30,7 @@ const ProductList = () => {
   return (
     <div className={`${styles.productList} container section`}>
       <header className={styles.productList__header}>
-        <h2>All Products</h2>
+        <h2 className={styles.productList__title}>All Products</h2>
         <Search search={search} onSearchChange={(e) => onSearchChange(e)} />
       </header>
       <div className={styles.products}>
