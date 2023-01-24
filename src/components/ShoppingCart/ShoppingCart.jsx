@@ -6,7 +6,7 @@ const ShoppingCart = () => {
   return (
     <div className={styles.cart}>
       <AiOutlineShoppingCart className={styles.cart__icon} />
-      <span className={styles.cart__total}>{total >= 9 ? '9+' : total}</span>
+     {total !== 0 && <span className={styles.cart__total}>{total >= 9 ? '9+' : total}</span>}
 
     </div>
   )

@@ -9,7 +9,7 @@ export const postProductRedux = createAsyncThunk(
 );
 
 const initialState = {
-  total: 1,
+  total: 0,
 };
 
 export const shoppingCartSlice = createSlice({
