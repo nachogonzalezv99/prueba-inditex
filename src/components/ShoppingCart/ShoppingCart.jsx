@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux/es/exports'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 const ShoppingCart = () => {
   const { total } = useSelector((store) => store.shoppingCart)
+  console.log(total)
   return (
     <div className={styles.cart}>
       <AiOutlineShoppingCart className={styles.cart__icon} />
