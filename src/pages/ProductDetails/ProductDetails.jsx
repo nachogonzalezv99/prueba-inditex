@@ -2,6 +2,7 @@ import styles from './ProductDetail.module.scss'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { getSingleProduct } from '../../services/products.services'
+import Accordion from '../../components/Accordion/Accordion'
 
 const ProductDetails = () => {
   const { id: productId } = useParams()
@@ -38,7 +39,7 @@ const ProductDetails = () => {
         </div>
 
         <div className={styles.productDetail__section}>
-          <p>Color</p>
+          <h4>Color</h4>
           <div className={styles.colors}>
             {colors.map((color, index) => (
               <button
@@ -53,7 +54,7 @@ const ProductDetails = () => {
 
         <div className={styles.productDetail__section}>
 
-          <p>Storage</p>
+          <h4>Storage</h4>
           <div className={styles.storage}>
             {storages.map((storage, index) => (
               <button
@@ -69,7 +70,8 @@ const ProductDetails = () => {
         <div className={styles.productDetail__section}>
           <button className='btn btn--primary'>Añadir</button>
         </div>
-
+        
+        <Accordion title="Technical information" />
 
       </div>
     </div>
