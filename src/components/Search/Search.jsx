@@ -1,8 +1,17 @@
-import styles from "./Search.module.scss";
+import styles from './Search.module.scss'
+const Search = ({ search, onSearchChange }) => {
 
-const Search = () => {
   return (
-    <div>Search</div>
+    <div className={styles.search}>
+      <label htmlFor="search"  className={styles.search__label}>Search: </label>
+      <input
+       className={styles.search__input}
+        id="search"
+        name="search"
+        value={search}
+        onChange={(e) => onSearchChange(e)}
+      />
+    </div>
   )
 }
-export { Search }
+export { Search };

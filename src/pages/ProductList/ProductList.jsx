@@ -11,7 +11,8 @@ const ProductList = () => {
 
   const filteredProducts = useMemo(() => {
     return products.filter(product => {
-      if ((product.marca || product.modelo).match(new RegExp(search))) {
+      if ((product.marca).match(new RegExp(search, 'i')) ||
+        (product.modelo).match(new RegExp(search, 'i'))) {
         return product
       }
     })
@@ -19,18 +20,21 @@ const ProductList = () => {
 
   useEffect(() => {
     setProducts(getAllProducts())
-  }, [search])
+  }, [])
+
+  const onSearchChange = (e) => {
+    setSearch(e.target.value)
+  }
 
 
   return (
     <div className={`${styles.productList} container section`}>
-      <heder className={styles.productList__header}>
-        {console.log(filteredProducts)}
+      <header className={styles.productList__header}>
         <h2>All Products</h2>
-        <Search />
-      </heder>
+        <Search search={search} onSearchChange={(e) => onSearchChange(e)} />
+      </header>
       <div className={styles.products}>
-        {products.map((product, index) => (
+        {filteredProducts.map((product, index) => (
           <ProductCard key={index} product={product} />
         ))}
       </div>
