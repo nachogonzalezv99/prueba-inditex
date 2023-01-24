@@ -1,5 +1,4 @@
 .product{
-    aspect-ratio: 1 / 1.2;
     background-color: var(--white);
     border-radius: 10px;
     overflow: hidden;
@@ -7,12 +6,15 @@
     cursor: pointer;
     transition: ease 0.3s border-color;
     &__img{
-        height: 200px;
+        height: 250px;
         width: 100%;
         object-fit: cover;
     }
     &__info{
         padding: 1em;
+    }
+    &__price{
+        text-align: right;
     }
     &:hover{
         border-color: var(--primary-500)

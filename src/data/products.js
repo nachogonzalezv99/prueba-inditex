@@ -1,4 +1,4 @@
-export const products = [
+export const productsData = [
   {
     id: 1,
     img: "./imgs/img1.jpg",
