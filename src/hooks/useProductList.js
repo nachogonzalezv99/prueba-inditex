@@ -5,7 +5,7 @@ import {getProductsRedux} from "../features/productsSlice"
 
 export const useProductList = () => {
   const dispatch = useDispatch();
-  const { products } = useSelector((store) => store.poducts);
+  const { products, isLoading } = useSelector((store) => store.poducts);
   const [search, setSearch] = useState([]);
   
   const filteredProducts = useMemo(() => {
@@ -26,5 +26,5 @@ export const useProductList = () => {
   const onSearchChange = (e) => {
     setSearch(e.target.value);
   };
-  return { filteredProducts, onSearchChange, search };
+  return { isLoading, filteredProducts, onSearchChange, search };
 };

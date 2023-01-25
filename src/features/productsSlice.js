@@ -12,17 +12,17 @@ export const getProductsRedux = createAsyncThunk(
       return getLocalStorage(STORAGE_KEY);
     } else {
       const { data } = await getAllProducts();
-      console.log('fetch data')
       return data;
     }
   }
 );
 
 const STORAGE_KEY = "products";
+const EXPIRATION_TIME = 1;
 
 const initialState = {
-  products: getLocalStorage(STORAGE_KEY) ? getLocalStorage(STORAGE_KEY) : [],
-  isLoading: false,
+  products: [],
+  isLoading: true,
 };
 
 export const productsSlice = createSlice({
@@ -35,7 +35,9 @@ export const productsSlice = createSlice({
     builder.addCase(getProductsRedux.fulfilled, (state, action) => {
       state.isLoading = false;
       state.products = action.payload;
-      setLocalStorage(STORAGE_KEY, state.products, 5000);
+      if (!getLocalStorage(STORAGE_KEY)) {
+        setLocalStorage(STORAGE_KEY, state.products, EXPIRATION_TIME);
+      }
     });
   },
 });

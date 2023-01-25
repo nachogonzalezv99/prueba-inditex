@@ -1,11 +1,12 @@
 import { ProductCard } from '../../components/ProductCard/ProductCard'
+import { ProductCardSkeleton } from '../../components/ProductCard/ProductCardSkeleton'
 import { Search } from "../../components/Search/Search"
 import { useProductList } from '../../hooks/useProductList'
 import styles from './ProductList.module.scss'
 
 const ProductList = () => {
-  
-  const { filteredProducts, onSearchChange, search } = useProductList()
+
+  const { isLoading, filteredProducts, onSearchChange, search } = useProductList()
 
   return (
     <div className={`${styles.productList} container section`}>
@@ -14,9 +15,17 @@ const ProductList = () => {
         <Search search={search} onSearchChange={(e) => onSearchChange(e)} />
       </header>
       <div className={styles.products}>
-        {filteredProducts.map((product, index) => (
-          <ProductCard key={index} product={product} />
-        ))}
+        {isLoading ? Array(8).fill().map((product, index) => (
+          <ProductCardSkeleton key={index}/>
+        )) : 
+        !isLoading && filteredProducts.length === 0 ? (
+          <div>No products available</div>
+        ) : (
+          filteredProducts.map((product, index) => (
+            <ProductCard key={index} product={product} />
+          ))
+        )}
+
       </div>
 
     </div>

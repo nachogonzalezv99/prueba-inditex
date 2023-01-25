@@ -19,20 +19,18 @@ const BreadCrumbs = () => {
       {location.pathname.split('/').map((item, index, array) => {
         if (location.pathname === '/') {
           return <p key={index} className={styles.breadcrumbs__active}>{isFirstItem(index) ? 'All products' : item}</p>
-        }
-        return (!isLastBreadcrumb(index, array) ? (
-          <React.Fragment key={index}>
+        } else if (!isLastBreadcrumb(index, array)) {
+          return <React.Fragment key={index}>
             <Link to={calculateUrl(index, array)}>{isFirstItem(index) ? 'All products' : item}</Link>
             <HiChevronRight className={styles.breadcrumbs__icon} />
           </React.Fragment>
-        ) : (
-          <p key={index} className={styles.breadcrumbs__active}>{isFirstItem(index) ? 'All products' : item}</p>
-        )
-        )
+        } else {
+          return <p key={index} className={styles.breadcrumbs__active}> {isFirstItem(index) ? 'All products' : item}</p>
+        }
       })}
 
 
-    </div>
+    </div >
 
   )
 }

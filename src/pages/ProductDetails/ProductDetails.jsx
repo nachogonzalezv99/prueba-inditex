@@ -7,9 +7,7 @@ import styles from './ProductDetail.module.scss'
 
 const ProductDetails = () => {
 
-
   const { id: productId } = useParams()
-
   const { product,
     isColorSelected,
     handleColorClick,
