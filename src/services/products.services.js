@@ -9,9 +9,9 @@ export const getAllProducts = () => {
 };
 
 export const getSingleProduct = (id) => {
-  const endpoint = `product/${id}`;
-  /* return axios.get(baseUrl + endpoint); */
-  return productsData.find((product) => product.id == id);
+  const endpoint = `products/${id}`;
+  return axios.get(baseUrl + endpoint);
+  /* return productsData.find((product) => product.id == id); */
 };
 
 export const postProduct = (id, colorCode, storageCode) => {
