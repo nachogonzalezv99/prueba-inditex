@@ -3,11 +3,6 @@ import {
   getShoppingCartTotal,
   postShoppingCart,
 } from "../services/shoppingCart.services";
-import {
-  getLocalStorage,
-  setLocalStorage,
-} from "../utils/localstorage.utility";
-
 export const postShoppingCartRedux = createAsyncThunk(
   "shoppingCart/postShoppingCartRedux",
   async ({ id, colorCode, storageCode }) => {
@@ -27,7 +22,7 @@ export const getShoppingCartTotalRedux = createAsyncThunk(
 const STORAGE_KEY = "shopping-cart-total";
 
 const initialState = {
-  total: getLocalStorage(STORAGE_KEY) ? getLocalStorage(STORAGE_KEY) : 0,
+  total: 0,
 };
 
 export const shoppingCartSlice = createSlice({
@@ -36,11 +31,9 @@ export const shoppingCartSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(postShoppingCartRedux.fulfilled, (state, action) => {
       state.total = action.payload.total;
-      setLocalStorage(STORAGE_KEY, state.total, 5000);
     });
     builder.addCase(getShoppingCartTotalRedux.fulfilled, (state, action) => {
       state.total = action.payload.total;
-      setLocalStorage(STORAGE_KEY, state.total, 5000);
     });
   },
 });

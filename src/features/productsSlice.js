@@ -12,6 +12,7 @@ export const getProductsRedux = createAsyncThunk(
       return getLocalStorage(STORAGE_KEY);
     } else {
       const { data } = await getAllProducts();
+      setLocalStorage(STORAGE_KEY, data, EXPIRATION_TIME);
       return data;
     }
   }
@@ -35,9 +36,6 @@ export const productsSlice = createSlice({
     builder.addCase(getProductsRedux.fulfilled, (state, action) => {
       state.isLoading = false;
       state.products = action.payload;
-      if (!getLocalStorage(STORAGE_KEY)) {
-        setLocalStorage(STORAGE_KEY, state.products, EXPIRATION_TIME);
-      }
     });
   },
 });
