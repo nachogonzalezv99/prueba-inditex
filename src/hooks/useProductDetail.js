@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 import { getSingleProduct } from "../services/products.services";
 import { useDispatch } from "react-redux/es/hooks/useDispatch";
 import { postProductRedux } from "../features/shoppingCartSlice";
+import { useNavigate } from "react-router-dom";
+import { PublicRoutes } from "../routes/routes";
 
 export const useProductDetail = (productId) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [product, setProduct] = useState({});
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedStorage, setSelectedStorage] = useState("");
@@ -21,7 +24,11 @@ export const useProductDetail = (productId) => {
   };
 
   useEffect(() => {
-    getSingleProduct(productId).then((res) => setProduct(res.data));
+    getSingleProduct(productId)
+      .then((res) => setProduct(res.data))
+      .catch(() => {
+        navigate(PublicRoutes.ERROR);
+      });
   }, []);
 
   useEffect(() => {
