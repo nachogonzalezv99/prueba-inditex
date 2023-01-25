@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { getSingleProduct } from "../services/products.services";
+import { useDispatch } from "react-redux/es/hooks/useDispatch";
+import { postProductRedux } from "../features/shoppingCartSlice";
 
 export const useProductDetail = (productId) => {
+  const dispatch = useDispatch();
   const [product, setProduct] = useState({});
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedStorage, setSelectedStorage] = useState("");
@@ -11,6 +14,11 @@ export const useProductDetail = (productId) => {
   const isStorageSelected = (storage) => storage === selectedStorage;
   const handleColorClick = (color) => setSelectedColor(color);
   const handleStorageClick = (storage) => setSelectedStorage(storage);
+
+  const isButtonDisabled = () => !selectedColor || !selectedStorage;
+  const handleClick = () => {
+    dispatch(postProductRedux(productId, selectedColor, selectedStorage));
+  };
 
   useEffect(() => {
     getSingleProduct(productId).then((res) => setProduct(res.data));
@@ -23,11 +31,11 @@ export const useProductDetail = (productId) => {
 
   return {
     product,
-    selectedColor,
     isColorSelected,
     handleColorClick,
-    selectedStorage,
     isStorageSelected,
     handleStorageClick,
+    isButtonDisabled,
+    handleClick,
   };
 };

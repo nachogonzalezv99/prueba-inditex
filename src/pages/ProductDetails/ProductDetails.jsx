@@ -1,29 +1,23 @@
-import { useDispatch } from 'react-redux/es/hooks/useDispatch'
+
 import { useParams } from 'react-router-dom'
 import Accordion from '../../components/Accordion/Accordion'
-import { postProductRedux } from '../../features/shoppingCartSlice'
 import { useProductDetail } from '../../hooks/useProductDetail'
 import styles from './ProductDetail.module.scss'
 
 
 const ProductDetails = () => {
-  const dispatch = useDispatch();
+
 
   const { id: productId } = useParams()
-  
+
   const { product,
-    selectedColor,
     isColorSelected,
     handleColorClick,
-    selectedStorage,
     isStorageSelected,
-    handleStorageClick, } = useProductDetail(productId)
-
-  //Add
-  const isButtonDisabled = () => !selectedColor || !selectedStorage;
-  const handleClick = () => {
-    dispatch(postProductRedux(productId, selectedColor, selectedStorage));
-  };
+    handleStorageClick,
+    isButtonDisabled,
+    handleClick
+  } = useProductDetail(productId)
 
   return (
     <div className={`${styles.productDetail} container section`}>
