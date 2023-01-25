@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getSingleProduct } from "../services/products.services";
 import { useDispatch } from "react-redux/es/hooks/useDispatch";
-import { postProductRedux } from "../features/shoppingCartSlice";
+import { postShoppingCartRedux } from "../features/shoppingCartSlice";
 import { useNavigate } from "react-router-dom";
 import { PublicRoutes } from "../routes/routes";
 
@@ -20,7 +20,7 @@ export const useProductDetail = (productId) => {
 
   const isButtonDisabled = () => !selectedColor || !selectedStorage;
   const handleClick = () => {
-    dispatch(postProductRedux(productId, selectedColor, selectedStorage));
+    dispatch(postShoppingCartRedux(productId, selectedColor, selectedStorage));
   };
 
   useEffect(() => {

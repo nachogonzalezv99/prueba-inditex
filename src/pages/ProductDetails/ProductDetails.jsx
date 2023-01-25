@@ -78,5 +78,5 @@ const ProductDetails = () => {
     </div>
   )
 }
-export { ProductDetails }
+export default ProductDetails
 

@@ -1,8 +1,17 @@
 import styles from './ShoppingCart.module.scss'
-import { useSelector } from 'react-redux/es/exports'
+import { useDispatch, useSelector } from 'react-redux/es/exports'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
+import { useEffect } from 'react'
+import { getShoppingCartTotal } from '../../services/shoppingCart.services'
+import { getShoppingCartTotalRedux } from '../../features/shoppingCartSlice'
 const ShoppingCart = () => {
+  const dispatch = useDispatch()
   const { total } = useSelector((store) => store.shoppingCart)
+
+  useEffect(()=>{
+    dispatch(getShoppingCartTotalRedux())
+  }, [])
+
   return (
     <div className={styles.cart}>
       <AiOutlineShoppingCart className={styles.cart__icon} />
