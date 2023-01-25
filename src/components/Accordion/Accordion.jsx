@@ -1,9 +1,13 @@
 import { useState } from 'react'
-import { BsCpuFill } from 'react-icons/bs'
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi'
+import { MdDesktopWindows } from 'react-icons/md'
+import { FaMemory, FaWeightHanging } from 'react-icons/fa'
 import styles from './Accordion.module.scss'
+import TechInfoComponent from './TechInfoComponent'
+import { IoResizeSharp } from 'react-icons/io5'
+import { BsCpuFill, BsWindow, BsBatteryFull, BsCameraFill } from 'react-icons/bs'
 
-const Accordion = ({ title, children }) => {
+const Accordion = ({ title, product }) => {
 
     const [isOpen, setIsOpen] = useState(false)
 
@@ -20,13 +24,14 @@ const Accordion = ({ title, children }) => {
             </button>
             {isOpen && (
                 <div className={styles.accordion__body}>
-                    {Array(5).fill().map((item, index) => (
-                        <div key={index} className={styles.accordion__description}>
-                            <BsCpuFill className={styles.accordion__icon} />
-                            <p className={styles.accordion__key}>CPU</p>
-                            <p className={styles.accordion__value}>1000 Ghz</p>
-                        </div>
-                    ))}
+                    <TechInfoComponent icon={<BsCpuFill />} title="CPU" subtitle={`${product.cpu} GHz`} />
+                    <TechInfoComponent icon={<FaMemory />} title="RAM" subtitle={`${product.ram} m/s`} />
+                    <TechInfoComponent icon={<BsWindow />} title="Sistema Operativo" subtitle={product.sistemaOperativo} />
+                    <TechInfoComponent icon={<MdDesktopWindows />} title="Resolución de pantalla" subtitle={product.resolucionPantalla} />
+                    <TechInfoComponent icon={<BsBatteryFull />} title="Batería" subtitle={product.bateria} />
+                    <TechInfoComponent icon={<BsCameraFill />} title="Cámaras" subtitle={product.camaras} />
+                    <TechInfoComponent icon={<IoResizeSharp />} title="Dimensiones" subtitle={product.dimensiones} />
+                    <TechInfoComponent icon={<FaWeightHanging />} title="Peso" subtitle={`${product.peso} kg`} />
 
                 </div>
             )}

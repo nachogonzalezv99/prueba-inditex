@@ -4,7 +4,7 @@ import Accordion from '../../components/Accordion/Accordion'
 import { getSingleProduct, postProduct } from '../../services/products.services'
 import styles from './ProductDetail.module.scss'
 import { useDispatch } from 'react-redux/es/hooks/useDispatch'
-import { postProductRedux } from '../../app/features/shoppingCartSlice'
+import { postProductRedux } from '../../features/shoppingCartSlice'
 
 const ProductDetails = () => {
   const { id: productId } = useParams()
@@ -87,7 +87,7 @@ const ProductDetails = () => {
           </button>
         </div>
 
-        <Accordion title="Technical information" />
+        <Accordion  dion title="Technical information" product={product}/>
 
       </div>
     </div>

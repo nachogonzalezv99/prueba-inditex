@@ -1,14 +1,16 @@
 import { useEffect, useMemo, useState } from 'react'
 import { ProductCard } from '../../components/ProductCard/ProductCard'
 import { Search } from "../../components/Search/Search"
-import { getAllProducts } from '../../services/products.services'
+import { getProductsRedux } from '../../features/productsSlice'
 import styles from './ProductList.module.scss'
+import { useDispatch } from 'react-redux/es/hooks/useDispatch'
+import { useSelector } from 'react-redux/es/exports'
 
 const ProductList = () => {
 
-  const [products, setProducts] = useState([])
+  const dispatch = useDispatch()
+  const { products } = useSelector((store) => store.poducts)
   const [search, setSearch] = useState([])
-
   const filteredProducts = useMemo(() => {
     return products.filter(product => {
       if ((product.marca).match(new RegExp(search, 'i')) ||
@@ -19,7 +21,7 @@ const ProductList = () => {
   }, [products, search])
 
   useEffect(() => {
-    setProducts(getAllProducts())
+    dispatch(getProductsRedux())
   }, [])
 
   const onSearchChange = (e) => {
