@@ -1,6 +1,7 @@
 import { ProductCard } from '../../components/ProductCard/ProductCard'
 import { ProductCardSkeleton } from '../../components/ProductCard/ProductCardSkeleton'
 import { Search } from "../../components/Search/Search"
+import Spinner from '../../components/Spinner/Spinner'
 import { useProductList } from '../../hooks/useProductList'
 import styles from './ProductList.module.scss'
 
@@ -15,17 +16,17 @@ const ProductList = () => {
         <Search search={search} onSearchChange={(e) => onSearchChange(e)} />
       </header>
       <div className={styles.products}>
-        
+
         {isLoading ? Array(8).fill().map((product, index) => (
-          <ProductCardSkeleton key={index}/>
-        )) : 
-        !isLoading && filteredProducts.length === 0 ? (
-          <div>No products available</div>
-        ) : (
-          filteredProducts.map((product, index) => (
-            <ProductCard key={index} product={product} />
-          ))
-        )}
+          <ProductCardSkeleton key={index} />
+        )) :
+          !isLoading && filteredProducts.length === 0 ? (
+            <div>No products available</div>
+          ) : (
+            filteredProducts.map((product, index) => (
+              <ProductCard key={index} product={product} />
+            ))
+          )}
 
       </div>
 

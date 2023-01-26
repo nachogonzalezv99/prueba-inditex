@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ErrorBoundary } from "./components/ErrorBoundary/ErrorBoundary";
 import { Header } from "./components/Header/Header";
+import Spinner from "./components/Spinner/Spinner";
 import Error from "./pages/Error/Error";
 import { PublicRoutes } from "./routes/routes";
 
@@ -15,7 +16,7 @@ function App() {
     <BrowserRouter>
       <Header />
       <ErrorBoundary>
-        <Suspense fallback={<div>Cargando...</div>}>
+        <Suspense fallback={<Spinner />}>
           <Routes>
             <Route path={PublicRoutes.PRODUCT_LIST} element={<ProductList />} />
             <Route path={PublicRoutes.ERROR} element={<Error />} />

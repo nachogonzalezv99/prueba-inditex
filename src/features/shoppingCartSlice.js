@@ -23,13 +23,18 @@ const STORAGE_KEY = "shopping-cart-total";
 
 const initialState = {
   total: 0,
+  isLoading: false
 };
 
 export const shoppingCartSlice = createSlice({
   name: "shoppingCart",
   initialState: initialState,
   extraReducers: (builder) => {
+    builder.addCase(postShoppingCartRedux.pending, (state, action) => {
+      state.isLoading = true;
+    });
     builder.addCase(postShoppingCartRedux.fulfilled, (state, action) => {
+      state.isLoading = false;
       state.total = action.payload.total;
     });
     builder.addCase(getShoppingCartTotalRedux.fulfilled, (state, action) => {
