@@ -15,6 +15,7 @@ const ProductList = () => {
         <Search search={search} onSearchChange={(e) => onSearchChange(e)} />
       </header>
       <div className={styles.products}>
+        
         {isLoading ? Array(8).fill().map((product, index) => (
           <ProductCardSkeleton key={index}/>
         )) : 

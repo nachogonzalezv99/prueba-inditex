@@ -1,13 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
-import { useDispatch } from "react-redux/es/hooks/useDispatch";
-import { useSelector } from "react-redux/es/exports";
-import {getProductsRedux} from "../features/productsSlice"
+import { useDispatch, useSelector } from "react-redux";
+import { getProductsRedux } from "../features/productsSlice";
 
 export const useProductList = () => {
   const dispatch = useDispatch();
   const { products, isLoading } = useSelector((store) => store.poducts);
-  const [search, setSearch] = useState([]);
-  
+  const [search, setSearch] = useState('');
+
   const filteredProducts = useMemo(() => {
     return products.filter((product) => {
       if (

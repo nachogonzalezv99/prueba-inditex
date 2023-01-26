@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getSingleProduct } from "../services/products.services";
-import { useDispatch } from "react-redux/es/hooks/useDispatch";
+import { useDispatch } from "react-redux";
 import { postShoppingCartRedux } from "../features/shoppingCartSlice";
 import { useNavigate } from "react-router-dom";
 import { PublicRoutes } from "../routes/routes";

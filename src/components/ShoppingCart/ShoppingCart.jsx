@@ -1,5 +1,5 @@
 import styles from './ShoppingCart.module.scss'
-import { useDispatch, useSelector } from 'react-redux/es/exports'
+import { useDispatch, useSelector } from 'react-redux'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 import { useEffect } from 'react'
 import { getShoppingCartTotal } from '../../services/shoppingCart.services'
